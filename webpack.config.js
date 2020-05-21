@@ -1,13 +1,13 @@
 //1. Output path has to be ABSOLUTE path.
 //2. Dev-server does not explicitly create a bundle.js file.
 const path = require("path");
-const publicDir = path.join(__dirname, "public");
+const _publicDir = path.join(__dirname, "public");
 
 module.exports = {
     mode: "development",
     entry: "./src/app.js",
     output: {
-        path: publicDir,
+        path: _publicDir,
         filename: "bundle.js"
     },
     module: {
@@ -17,6 +17,6 @@ module.exports = {
     },
     devtool: "eval-cheap-module-source-map",
     devServer: {
-        contentBase: publicDir
+        contentBase: _publicDir
     }
 };

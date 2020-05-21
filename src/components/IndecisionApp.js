@@ -17,6 +17,9 @@ export default class IndecisionApp extends React.Component {
         };
     }
 
+    // Not every function should be bounded. Only bind methods
+    // that would be access outside in case of "this" context.
+
     componentDidMount(){
         try {
             const json = localStorage.getItem("options");
