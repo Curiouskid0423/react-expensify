@@ -1,4 +1,5 @@
-//output path has to be ABSOLUTE path.
+//1. Output path has to be ABSOLUTE path.
+//2. Dev-server does not explicitly create a bundle.js file.
 const path = require("path");
 const publicDir = path.join(__dirname, "public");
 
