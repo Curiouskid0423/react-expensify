@@ -1,5 +1,11 @@
-//1. Output path has to be ABSOLUTE path.
-//2. Dev-server does not explicitly create a bundle.js file.
+/**
+ *  Webpack file. A bundler.
+ *  @author Kevin Li
+ * 1. Output path has to be ABSOLUTE path.
+ * 2. Dev-server does not explicitly create a bundle.js file.
+ * 3. Inside /modules/rules, we use "loader" for one loader, and "use"
+ *    if there is multiple.
+ */
 const path = require("path");
 const _publicDir = path.join(__dirname, "public");
 
@@ -12,7 +18,8 @@ module.exports = {
     },
     module: {
         rules: [
-            { loader: "babel-loader", test: /\.js$/, exclude: /node_modules/ }
+            { loader: "babel-loader", test: /\.js$/, exclude: /node_modules/ },
+            { test: /\.css$/, use: ["style-loader", "css-loader"] }
         ]
     },
     devtool: "eval-cheap-module-source-map",
