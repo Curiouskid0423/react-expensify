@@ -1,0 +1,5 @@
+@import "./base/base";
+@import "./components/header";
+
+// All the base files have to be imported in order to
+// be considered by webpack.
