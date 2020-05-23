@@ -25,10 +25,10 @@ module.exports = {
     }
 };
 /*
-* TODO 1. Output path has to be ABSOLUTE path.
-*  2. Dev-server does not explicitly create a bundle.js file.
-*  3. Inside /modules/rules, we use "loader" for one loader, and "use"
-*     if there is multiple.
-*  4. css-loader interprets @import and url() like import/require() and
-*     will resolve them. style-loader injects css into the DOM.
+* TODO  1. Output path has to be ABSOLUTE path.
+*       2. Dev-server does not explicitly create a bundle.js file.
+*       3. Inside /modules/rules, we use "loader" for one loader,
+*       and "use" if there is multiple.
+*       4. css-loader interprets @import and url() like import/require() and
+*       will resolve them. style-loader injects css into the DOM.
 */
