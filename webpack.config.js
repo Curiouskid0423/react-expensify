@@ -20,8 +20,8 @@ module.exports = {
     },
     devtool: "eval-cheap-module-source-map",
     devServer: {
+        historyApiFallback: true,
         contentBase: _publicDir,
-        historyApiFallback: true
     }
 };
 /*

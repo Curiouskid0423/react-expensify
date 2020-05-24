@@ -19,7 +19,7 @@ const Router = () => (
             <Switch>
                 <Route path = "/" component = {ExpenseDashboard} exact = {true} />
                 <Route path = "/create" component = {AddExpense} />
-                <Route path = "/edit/:id" component = {EditExpense} />
+                <Route path = "/edit/:id" component={EditExpense} />
                 <Route path = "/help" component = {HelpPage} />
                 <Route component = {NotFound} />
             </Switch>
