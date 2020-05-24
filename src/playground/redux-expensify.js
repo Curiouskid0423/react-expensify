@@ -82,18 +82,88 @@ const filterReducer = (prevState = filterDefault, action) => {
             return {
                 ...prevState,
                 text: action.query
-            }
+            };
+        case "SORT_BY_AMOUNT":
+            return {
+                ...prevState,
+                sortBy: "amount"
+            };
+        case "SORT_BY_DATE":
+            return {
+                ...prevState,
+                sortBy: "date"
+            };
+        case "SET_START_DATE":
+            return {
+                ...prevState,
+                startDate: action.startDate
+            };
+        case "SET_END_DATE":
+            return {
+                ...prevState,
+                endDate: action.endDate
+            };
         default:
             return prevState;
     }
 };
 
+/**
+ * Action Generator for setting filter text.
+ * @param query
+ * @returns {{query: string, type: string}}
+ */
 const setTextFilter = (query = "") => {
     return {
         type: "SET_TEXT_FILTER",
         query
     }
 };
+
+/**
+ * Action generator for setting sortBy to amount.
+ * @returns {{type: string}}
+ */
+const sortByAmount = () => {
+    return {
+        type: "SORT_BY_AMOUNT"
+    }
+};
+
+/**
+ * Action generator for setting sortBy to amount.
+ * @returns {{type: string}}
+ */
+const sortByDate = () => {
+    return {
+        type: "SORT_BY_DATE"
+    }
+};
+
+/**
+ * Action Generator of setting start date.
+ * @param dateVal
+ * @returns {{type: string, startDate: *}}
+ */
+const setStartDate = (dateVal) => {
+    return {
+        type: "SET_START_DATE",
+        startDate: dateVal
+    }
+}
+
+/**
+ * Action Generator of setting the end date.
+ * @param dateVal
+ * @returns {{endDate: *, type: string}}
+ */
+const setEndDate = (dateVal) => {
+    return {
+        type: "SET_END_DATE",
+        endDate: dateVal
+    }
+}
+
 
 // ----------- createStore Section ----------- //
 
@@ -108,15 +178,22 @@ const unsubscribe = store.subscribe(() => {
     console.log(store.getState());
 })
 
-const first = store.dispatch(addExpense({ description: "Initial expense", amount: 31415 }));
-const second = store.dispatch(addExpense({ description: "Second expense", amount: 84793 }));
-const third = store.dispatch(addExpense({ description: "Third expense", amount: 52520 }));
-store.dispatch(removeExpense({ id: first.expense.id }));
-store.dispatch(editExpense(second.expense.id, { amount: 78989 }));
-//  start FILTER actions.
+// const first = store.dispatch(addExpense({ description: "Initial expense", amount: 31415 }));
+// const second = store.dispatch(addExpense({ description: "Second expense", amount: 84793 }));
+// const third = store.dispatch(addExpense({ description: "Third expense", amount: 52520 }));
+// store.dispatch(removeExpense({ id: first.expense.id }));
+// store.dispatch(editExpense(second.expense.id, { amount: 78989 }));
 
+//  start FILTER actions.
 store.dispatch(setTextFilter("rent"));
 store.dispatch(setTextFilter());
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
+store.dispatch(setStartDate(125));
+store.dispatch(setStartDate());
+store.dispatch(setEndDate(250));
+store.dispatch(setEndDate());
+
 
 unsubscribe();
 
