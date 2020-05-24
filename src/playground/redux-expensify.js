@@ -19,6 +19,16 @@ const expenseReducer = (prevState = [], action) => {
             ];
         case "REMOVE_EXPENSE":
             return prevState.filter((item) => item.id !== action.id);
+        case "EDIT_EXPENSE":
+            return prevState.map((item) => {
+                if (item.id === action.id) {
+                    item = {
+                        ...item,
+                        ...action.edit
+                    }
+                }
+                return item;
+            });
         default:
             return prevState;
     }
@@ -52,6 +62,14 @@ const removeExpense = ({ id }) => {
     }
 };
 
+const editExpense = (id, editObj) => {
+    return {
+        type: "EDIT_EXPENSE",
+        id,
+        edit: editObj
+    }
+}
+
 // ----------- Filter Section ----------- //
 
 const filterDefault = {
@@ -60,8 +78,20 @@ const filterDefault = {
 
 const filterReducer = (prevState = filterDefault, action) => {
     switch (action.type) {
+        case "SET_TEXT_FILTER":
+            return {
+                ...prevState,
+                text: action.query
+            }
         default:
             return prevState;
+    }
+};
+
+const setTextFilter = (query = "") => {
+    return {
+        type: "SET_TEXT_FILTER",
+        query
     }
 };
 
@@ -82,6 +112,11 @@ const first = store.dispatch(addExpense({ description: "Initial expense", amount
 const second = store.dispatch(addExpense({ description: "Second expense", amount: 84793 }));
 const third = store.dispatch(addExpense({ description: "Third expense", amount: 52520 }));
 store.dispatch(removeExpense({ id: first.expense.id }));
+store.dispatch(editExpense(second.expense.id, { amount: 78989 }));
+//  start FILTER actions.
+
+store.dispatch(setTextFilter("rent"));
+store.dispatch(setTextFilter());
 
 unsubscribe();
 
