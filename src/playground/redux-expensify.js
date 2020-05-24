@@ -166,7 +166,11 @@ const setEndDate = (dateVal) => {
 
 
 // ----------- createStore Section ----------- //
-
+/**
+ * A Redux store. With combineReducers, each reducer is in charge
+ * of ONE entry in the state object. Beware the format which action
+ * creator returns.
+ */
 const store = createStore(
     combineReducers({
         expenses: expenseReducer,
@@ -186,13 +190,9 @@ const unsubscribe = store.subscribe(() => {
 
 //  start FILTER actions.
 store.dispatch(setTextFilter("rent"));
-store.dispatch(setTextFilter());
 store.dispatch(sortByAmount());
-store.dispatch(sortByDate());
 store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
 store.dispatch(setEndDate(250));
-store.dispatch(setEndDate());
 
 
 unsubscribe();
