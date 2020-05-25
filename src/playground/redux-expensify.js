@@ -164,6 +164,37 @@ const setEndDate = (dateVal) => {
     }
 }
 
+// ----------- Query functions ----------- //
+
+/**
+ * Getter method for visible expenses based on filters.
+ * @param expenses
+ * @param filters
+ * @returns {*}
+ */
+const getVisibleExpenses = (expenses,
+                            {text, sortBy, startDate, endDate} = filterDefault) => {
+    const unSorted = expenses.filter((item) => {
+        const textMatch = item.description.toLowerCase().includes(text.toLowerCase());
+        const startMatch = typeof startDate !== "number" || startDate <= item.createdAt;
+        const endMatch = typeof endDate !== "number" || endDate >= item.createdAt;
+        return textMatch && startMatch && endMatch;
+    });
+    return sortExpenses(unSorted, sortBy);
+}
+
+/**
+ * Helper method for sorting expense
+ * @param target is the array to be sorted
+ * @param sortBy is an indicator of what to sort by
+ * @returns a sorted array of expenses
+ */
+const sortExpenses = (target, sortBy) => {
+    if (sortBy === "amount") {
+        return target.sort((a, b) => b.amount - a.amount);
+    }
+    return target.sort((a, b) => b.createdAt - a.createdAt);
+}
 
 // ----------- createStore Section ----------- //
 /**
@@ -179,22 +210,26 @@ const store = createStore(
 );
 
 const unsubscribe = store.subscribe(() => {
-    console.log(store.getState());
+    const state = store.getState();
+    const visible = getVisibleExpenses(state.expenses, state.filters);
+    console.log(visible);
 })
 
-// const first = store.dispatch(addExpense({ description: "Initial expense", amount: 31415 }));
-// const second = store.dispatch(addExpense({ description: "Second expense", amount: 84793 }));
-// const third = store.dispatch(addExpense({ description: "Third expense", amount: 52520 }));
-// store.dispatch(removeExpense({ id: first.expense.id }));
-// store.dispatch(editExpense(second.expense.id, { amount: 78989 }));
+const first = store.dispatch(addExpense({ description: "Initial expense", amount: 31415 }));
+const second = store.dispatch(addExpense({ description: "Second expense", amount: 84793 }));
+const third = store.dispatch(addExpense({ description: "Third expense Berkeley", amount: 52520 }));
+store.dispatch(addExpense({ description: "Fourth expense Berkeley", amount: 87098 }));
+store.dispatch(addExpense({ description: "Fifth expense Berkeley", amount: 54321 }));
+store.dispatch(addExpense({ description: "Sixth expense Berkeley", amount: 66660 }));
+
+store.dispatch(removeExpense({ id: first.expense.id }));
+store.dispatch(editExpense(second.expense.id, { amount: 78989 }));
 
 //  start FILTER actions.
-store.dispatch(setTextFilter("rent"));
+store.dispatch(setTextFilter("Berkeley"));
 store.dispatch(sortByAmount());
-store.dispatch(setStartDate(125));
-store.dispatch(setEndDate(250));
-
-
+// store.dispatch(setStartDate(125));
+// store.dispatch(setEndDate(250));
 unsubscribe();
 
 
