@@ -4,6 +4,13 @@
  */
 
 /**
+ * Default for filter state.
+ */
+const filterDefault = {
+    text: "", sortBy: "date", startDate: undefined, endDate: undefined
+};
+
+/**
  * Getter method for visible expenses based on filters.
  * @param expenses
  * @param filters
