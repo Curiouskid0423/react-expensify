@@ -3,7 +3,6 @@
  * @author Kevin Li
  */
 
-
 /**
  *  Expense reducer keeps track of the expenses array, i.e. only
  *  modifies the "expenses" portion of  the central state.
