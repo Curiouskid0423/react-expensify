@@ -1,10 +1,13 @@
+import moment from "moment";
 /**
  * Filter reducer file.
  * @author Kevin Li
  */
 
 const filterDefault = {
-    text: "", sortBy: "date", startDate: undefined, endDate: undefined
+    text: "", sortBy: "date",
+    startDate: moment().startOf("month"),
+    endDate: moment().endOf("month")
 };
 /**
  * Reducer function for filter.

@@ -88,8 +88,8 @@ export default class ExpenseForm extends React.Component {
                                       onDateChange = {this.onDateChange}
                                       focused = {this.state.calFocused}
                                       onFocusChange = {({ focused }) => this.setState({calFocused: focused})}
-                                      numberOfMonths = {1}
-                                      isOutsideRange = {() => false}/>
+                                      numberOfMonths = {1} isOutsideRange = {() => false}
+                    />
                     <br/>
                     <button type="submit"> Submit </button>
                 </form>

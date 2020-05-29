@@ -3,11 +3,15 @@
  * @author Kevin Li
  */
 
+import moment from "moment";
+
 /**
  * Default for filter state.
  */
 const filterDefault = {
-    text: "", sortBy: "date", startDate: undefined, endDate: undefined
+    text: "", sortBy: "date",
+    startDate: moment().startOf("month"),
+    endDate: moment().endOf("month")
 };
 
 /**
@@ -19,9 +23,11 @@ const filterDefault = {
 export const getVisibleExpenses = (expenses,
                             {text, sortBy, startDate, endDate} = filterDefault) => {
     const unSorted = expenses.filter((item) => {
+        const expMoment = item.createdAt;
+
         const textMatch = item.description.toLowerCase().includes(text.toLowerCase());
-        const startMatch = typeof startDate !== "number" || startDate <= item.createdAt;
-        const endMatch = typeof endDate !== "number" || endDate >= item.createdAt;
+        const startMatch = startDate ? startDate.isSameOrBefore(expMoment, "day") : true;
+        const endMatch = endDate ? endDate.isSameOrAfter(expMoment, "day") : true;
         return textMatch && startMatch && endMatch;
     });
     return sortExpenses(unSorted, sortBy);
