@@ -13,7 +13,9 @@ const launchStore = () => {
         combineReducers({
             expenses: expenseReducer,
             filters: filterReducer
-        })
+        }),
+        //TODO: Below is the enhancer for   `Redux Dev Tool`
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
 }
 

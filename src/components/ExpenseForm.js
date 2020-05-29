@@ -14,11 +14,13 @@ import "../styles/styles.scss"
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
+        const isEdit = !!props.expense;
         this.state = {
-            description: "",
-            amount: "",
-            note: "",
-            createdAt: moment(),
+            description: isEdit ? props.expense.description : "",
+            amount: isEdit ?
+                (props.expense.amount / 100).toString() : "",
+            note: isEdit ? props.expense.note : "",
+            createdAt: isEdit ? moment(props.expense.createdAt) : moment(),
             calFocused: false,
             error: ""
         }
@@ -72,12 +74,14 @@ export default class ExpenseForm extends React.Component {
                 { this.state.error && <h4>{ this.state.error }</h4> }
                 <form onSubmit = {this.onAddExpense}>
                     <input type = "text" placeholder = "Description"
-                           autoFocus = {true} onChange={this.onDescChange}
+                           value = {this.state.description} autoFocus = {true}
+                           onChange={this.onDescChange}
                     />
                     <input type = "number" placeholder = "Amount" value={this.state.amount}
                            onChange={this.onAmountChange}/>
                     <br />
                     <textarea placeholder = "Optional notes for the expense"
+                              value = {this.state.note}
                               onChange={this.onNoteChange}>
                     </textarea>
                     <SingleDatePicker date = {this.state.createdAt}

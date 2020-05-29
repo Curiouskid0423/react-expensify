@@ -1,25 +1,17 @@
 import React from "react";
-import {connect} from "react-redux";
-import {removeExpense} from "../actions/expenses";
+import {Link} from "react-router-dom";
 
 
-const ExpenseItem = ({ id, dispatch, description,
+const ExpenseItem = ({ id, description,
                          amount, createdAt }) => {
     return (
         <div>
-            <h4>{ description }</h4>
+            <Link to = {`/edit/${id}`}>
+                <h4>{ description }</h4>
+            </Link>
             <h4> {amount} -- {createdAt} </h4>
-            <button onClick={(e) => {
-                dispatch(removeExpense({ id })); // Be careful about the params you set
-            }}>remove</button>
         </div>
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        filters: state.filters
-    }
-}
-
-export default connect(mapStateToProps)(ExpenseItem);
+export default ExpenseItem;

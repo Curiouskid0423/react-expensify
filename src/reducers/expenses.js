@@ -3,6 +3,8 @@
  * @author Kevin Li
  */
 
+//TODO: Best practice to keep `reducer` just updating the value, and avoid computations.
+//  Do the computations in action generators.
 /**
  *  Expense reducer keeps track of the expenses array, i.e. only
  *  modifies the "expenses" portion of  the central state.
