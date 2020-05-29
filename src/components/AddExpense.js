@@ -1,11 +1,20 @@
 import React from "react";
+import ExpenseForm from "./ExpenseForm";
+import { connect } from "react-redux";
+import {addExpense} from "../actions/expenses";
 
-const AddExpense = () => {
+const AddExpense = (props) => {
     return (
         <div>
-            <h4> Add expense dashboard. </h4>
+            <br/>
+            <ExpenseForm onSubmit = {(expenseObj) => {
+                props.dispatch(addExpense(expenseObj));
+                props.history.push("/");
+            }}/>
         </div>
     )
 };
 
-export default AddExpense;
+// TODO: We can safely use `connect` without `mapStateToProps` if we don't need
+//  info from the store other than the function `dispatch()`.
+export default connect()(AddExpense);

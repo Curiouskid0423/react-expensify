@@ -9,15 +9,10 @@ import { getVisibleExpenses } from "../selectors/expenses";
  * @return {*}
  */
 const ExpensesLoader = (props) => {
-    if (props.expenses !== []) {
-        return props.expenses.map((item) => (
-            <div>
-               <ExpenseItem key = {item.id} {...item} />
-            </div>
-        ));
+    if (props.expenses.length === 0) {
+        return (<h4>No expense is tracked under the given condition.</h4>);
     }
-    //FIXME: the below return statement does not work
-    return (<h4> No expenses recorded. </h4>);
+    return props.expenses.map((item) => <ExpenseItem key = {item.id} {...item} />);
 }
 
 const ExpenseList = (props) => {
@@ -30,6 +25,7 @@ const ExpenseList = (props) => {
 
 /**
  * MapStateToProps take in two arguments: state, and ownProps
+ * The `state` object could actually be called store (redux)
  * @param state
  * @return a `props` object
  */
