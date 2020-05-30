@@ -13,7 +13,8 @@ import {v4 as uuid} from "uuid";
  * @param createdAt stored in numeric value (in respect to unix epoch time)
  * @returns {{type: string, expense: {note, createdAt, amount: *, description: *, id: string}}}
  */
-export const addExpense = ({ description, note = "", amount, createdAt = 0}) => {
+export const addExpense = (
+        { description = "", note = "", amount = 0, createdAt = 0} = {}) => {
     return {
         type: "ADD_EXPENSE",
         expense: {
