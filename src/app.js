@@ -10,9 +10,8 @@ import "./styles/styles.scss";
 
 import configStore from "./store/configStore";
 import {getVisibleExpenses} from "./selectors/expenses";
-import {addExpense, editExpense} from "./actions/expenses";
+import {addExpense} from "./actions/expenses";
 import { Provider } from "react-redux";
-import {setTextFilter} from "./actions/filters";
 
 /* Redux store object. */
 const store = configStore();
@@ -23,7 +22,7 @@ const unsubscribe = store.subscribe(() => {
     console.log(visible);
 })
 
-/* Testing data. */
+/* Testing dummy data. */
 const first = store.dispatch(addExpense({ description: "Initial expense", amount: 84793 }));
 const second = store.dispatch(addExpense({ description: "Second expense", amount: 31415, createdAt: 100 }));
 const third = store.dispatch(addExpense({ description: "Third expense", amount: 56009, createdAt: 200 }));

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpenseListItem Test Suite Test making an expense list with given object. 1`] = `
+<div>
+  <Link
+    to="/edit/2"
+  >
+    <h4>
+      Louisa Coffee
+    </h4>
+  </Link>
+  <h4>
+     
+    7000
+     -- 
+    172800000
+     
+  </h4>
+</div>
+`;
