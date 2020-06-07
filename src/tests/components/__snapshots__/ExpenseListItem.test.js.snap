@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExpenseListItem Test Suite Test making an expense list with given object. 1`] = `
+exports[`ExpenseListItem Test Suite Should render an ExpenseListItem 1`] = `
 <div>
   <Link
     to="/edit/2"

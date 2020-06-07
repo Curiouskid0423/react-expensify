@@ -16,5 +16,6 @@ const AddExpense = (props) => {
 };
 
 // TODO: We can safely use `connect` without `mapStateToProps` if we don't need
-//  info from the store other than the function `dispatch()`.
+//  info from the store other than the function `dispatch()`, in order to update
+//  the redux store.
 export default connect()(AddExpense);

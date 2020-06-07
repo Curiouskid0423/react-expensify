@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpenseDashboard Component Should render a Dashboard object w/o knowing how nested components have changed. 1`] = `
+<div>
+  <h3>
+     - MAIN DASHBOARD 
+  </h3>
+  <Connect(ExpenseListFilters) />
+  <Connect(ExpenseList) />
+</div>
+`;
