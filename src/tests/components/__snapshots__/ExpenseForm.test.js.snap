@@ -15,8 +15,9 @@ exports[`ExpenseForm component defaults Should render an ExpenseForm with given 
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
-      value="70"
+      value="7000"
     />
     <br />
     <textarea
@@ -144,6 +145,7 @@ exports[`ExpenseForm component defaults Should render error for invalid form sub
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
       value=""
     />
@@ -276,6 +278,7 @@ exports[`ExpenseForm component defaults Should render error for invalid form sub
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
       value=""
     />
@@ -405,6 +408,7 @@ exports[`ExpenseForm component defaults Should render the ExpenseForm accurately
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
       value=""
     />
@@ -534,8 +538,9 @@ exports[`ExpenseForm during edits Should change amount when valid input. 1`] = `
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
-      value="70"
+      value="7000"
     />
     <br />
     <textarea
@@ -663,6 +668,7 @@ exports[`ExpenseForm during edits Should change amount when valid input. 2`] = `
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
       value="23.50"
     />
@@ -792,6 +798,7 @@ exports[`ExpenseForm during edits Should change description after edit. 1`] = `
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
       value=""
     />
@@ -921,6 +928,7 @@ exports[`ExpenseForm during edits Should change description after edit. 2`] = `
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
       value=""
     />
@@ -1050,8 +1058,9 @@ exports[`ExpenseForm during edits Should change on note change. 1`] = `
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
-      value="70"
+      value="7000"
     />
     <br />
     <textarea
@@ -1179,8 +1188,9 @@ exports[`ExpenseForm during edits Should change on note change. 2`] = `
     <input
       onChange={[Function]}
       placeholder="Amount"
+      step=".01"
       type="number"
-      value="70"
+      value="7000"
     />
     <br />
     <textarea

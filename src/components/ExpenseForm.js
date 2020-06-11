@@ -15,8 +15,7 @@ export default class ExpenseForm extends React.Component {
         const isEdit = !!props.expense;
         this.state = {
             description: isEdit ? props.expense.description : "",
-            amount: isEdit ?
-                (props.expense.amount / 100).toString() : "",
+            amount: isEdit ? props.expense.amount.toString() : "",
             note: isEdit ? props.expense.note : "",
             createdAt: isEdit ? moment(props.expense.createdAt) : moment(),
             calFocused: false,
@@ -33,7 +32,7 @@ export default class ExpenseForm extends React.Component {
     // Event listener for amount changes, with regex check
     onAmountChange = (e) => {
         const amount = e.target.value;
-        if (!amount || amount.match(/^\d{1,}(\.\d{1,2})?$/)) {
+        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
             this.setState({ amount });
         }
     }
@@ -75,7 +74,7 @@ export default class ExpenseForm extends React.Component {
                            value = {this.state.description} autoFocus = {true}
                            onChange={this.onDescChange}
                     />
-                    <input type = "number" placeholder = "Amount" value={this.state.amount}
+                    <input type = "number" step =".01" placeholder = "Amount" value={this.state.amount}
                            onChange={this.onAmountChange}/>
                     <br />
                     <textarea placeholder = "Optional notes for the expense"

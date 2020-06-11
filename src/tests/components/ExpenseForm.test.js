@@ -82,7 +82,7 @@ describe("ExpenseForm test with spies.", () => {
        expect(wrapper.state("error")).toEqual("");
        expect(spyFn).toHaveBeenLastCalledWith({
            description: defaultExp[0].description,
-           amount: defaultExp[0].amount / 100,
+           amount: defaultExp[0].amount,
            createdAt: defaultExp[0].createdAt,
            note: defaultExp[0].note
        });

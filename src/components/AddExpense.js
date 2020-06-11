@@ -3,19 +3,33 @@ import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
 import {addExpense} from "../actions/expenses";
 
-const AddExpense = (props) => {
-    return (
-        <div>
-            <br/>
-            <ExpenseForm onSubmit = {(expenseObj) => {
-                props.dispatch(addExpense(expenseObj));
-                props.history.push("/");
-            }}/>
-        </div>
-    )
+export class AddExpense extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    onSubmit = (expenseObj) => {
+        this.props.dispatchAdder(expenseObj);
+        this.props.history.push("/");
+    }
+
+    render() {
+        return (
+            <div>
+                <br/>
+                <ExpenseForm onSubmit = {this.onSubmit}/>
+            </div>
+        );
+    }
+}
+
+// Use mapDispatchToProps to simplify functions for better testing experience.
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchAdder: (expenseObj) => dispatch(addExpense(expenseObj))
+    };
 };
 
-// TODO: We can safely use `connect` without `mapStateToProps` if we don't need
-//  info from the store other than the function `dispatch()`, in order to update
-//  the redux store.
-export default connect()(AddExpense);
+// TODO: We can safely use `connect` without `mapStateToProps` if we don't need info from
+//  the store other than the function `dispatch()`, in order to update the redux store.
+export default connect(undefined, mapDispatchToProps)(AddExpense);
