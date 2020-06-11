@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import moment from "moment";
 import ExpenseForm from "../../components/ExpenseForm";
 import { expenses as defaultExp } from "../fixtures/expenses";
 
@@ -23,6 +24,13 @@ describe("ExpenseForm component defaults", () => {
        });
        expect(wrapper.state("error").length).toBeGreaterThan(0);
        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Should set new date on Date Change.", () => {
+        const now = moment();
+        const wrapper = shallow(<ExpenseForm />);
+        wrapper.find("withStyles(SingleDatePicker)").prop("onDateChange")(now);
+        expect(wrapper.state("createdAt")).toEqual(now);
     });
 });
 
@@ -61,6 +69,22 @@ describe("ExpenseForm during edits", () => {
         expect(wrapper.state("amount")).toEqual(value);
         expect(wrapper).toMatchSnapshot();
     });
-
     // Should add another test during invalid `amount` input.
+});
+
+describe("ExpenseForm test with spies.", () => {
+    it("Should be called with correct onSubmit args.", () => {
+       const spyFn = jest.fn();
+       const wrapper = shallow(<ExpenseForm expense = {defaultExp[0]} onSubmit = {spyFn} />);
+       wrapper.find("form").simulate("submit", {
+           preventDefault: () => {}
+       });
+       expect(wrapper.state("error")).toEqual("");
+       expect(spyFn).toHaveBeenLastCalledWith({
+           description: defaultExp[0].description,
+           amount: defaultExp[0].amount / 100,
+           createdAt: defaultExp[0].createdAt,
+           note: defaultExp[0].note
+       });
+    });
 });

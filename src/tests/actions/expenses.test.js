@@ -22,15 +22,15 @@ test("Test addExpense with given value.", () => {
     const expenseData = {
         description: "hello world", amount: 12343, createdAt: 100
     };
-    const addExpObj = addExpense(expenseData);
-    expect(addExpObj).toEqual({
+    const addExpenseObj = addExpense(expenseData);
+    expect(addExpenseObj).toEqual({
         type: "ADD_EXPENSE",
         expense: {
             ...expenseData,
             id: expect.any(String),
             note: ""
         }
-    })
+    });
 });
 
 test("Test addExpense with default props.", () => {

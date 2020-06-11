@@ -3,7 +3,7 @@ import moment from "moment";
 
 const expenses = [{
     id: 1, description: "Philosophy cafe", amount: 698300,
-    createdAt: moment(0),
+    createdAt: moment(0).valueOf(),
     note: ""
 }, {
     id: 2, description: "Louisa Coffee", amount: 7000,

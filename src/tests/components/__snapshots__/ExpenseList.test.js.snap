@@ -7,7 +7,7 @@ exports[`ExpenseList testing suite Should render ExpenseList with expense defaul
       Array [
         Object {
           "amount": 698300,
-          "createdAt": "1970-01-01T00:00:00.000Z",
+          "createdAt": 0,
           "description": "Philosophy cafe",
           "id": 1,
           "note": "",
