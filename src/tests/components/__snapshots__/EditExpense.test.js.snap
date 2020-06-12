@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditExpense page behaviors. should successfully render a default snapshot. 1`] = `
+<div>
+  <ExpenseForm
+    expense={
+      Object {
+        "amount": 7000,
+        "createdAt": 172800000,
+        "description": "Louisa Coffee",
+        "id": 2,
+        "note": "Cafe for working",
+      }
+    }
+    onSubmit={[Function]}
+  />
+  <button
+    onClick={[Function]}
+  >
+     Remove 
+  </button>
+</div>
+`;

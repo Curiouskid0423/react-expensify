@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Add expense page defaults. should create a default snapshot. 1`] = `
+exports[`Handle onSubmit should render a default snapshot. 1`] = `
 <div>
   <br />
   <ExpenseForm

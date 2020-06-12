@@ -3,21 +3,32 @@ import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
 import {editExpense, removeExpense} from "../actions/expenses";
 
-const EditExpense = (props) => {
-    return (
-        <div>
-            <h4> Edit expense dashboard. ID:  {props.match.params.id} </h4>
-            <ExpenseForm expense = {props.expense} onSubmit = {(expense) => {
-                props.dispatch(editExpense(props.match.params.id, expense));
-                props.history.push("/");
-            }} />
-            <button onClick = {() => {
-                props.dispatch(removeExpense({ id: props.expense.id}));
-                props.history.push("/");
-            }}> Remove </button>
-        </div>
-    )
-};
+export class EditExpense extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    onEdit = (expense) => {
+        const id = this.props.expense.id;
+        this.props.dispatchEdit(id, expense);
+        this.props.history.push("/");
+    }
+
+    onRemoval = () => {
+        this.props.dispatchRemove({ id: this.props.expense.id});
+        this.props.history.push("/");
+    }
+
+    render() {
+        return (
+            <div>
+                <ExpenseForm expense = {this.props.expense} onSubmit = {this.onEdit} />
+                <button onClick = {this.onRemoval}> Remove </button>
+            </div>
+        )
+    }
+
+}
 
 // match.params.id is implicitly returned by React Component.
 // ownProps take in the props from the connected component.
@@ -29,4 +40,11 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(EditExpense);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchEdit: (id, expense) => dispatch(editExpense(id, expense)),
+        dispatchRemove: (id) => dispatch(removeExpense(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpense);

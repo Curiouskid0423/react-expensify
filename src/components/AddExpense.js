@@ -7,7 +7,8 @@ export class AddExpense extends React.Component {
     constructor(props) {
         super(props);
     }
-
+    // This component can be transformed into a stateless component, but
+    // currently being a classic just for the sake of testing.
     onSubmit = (expenseObj) => {
         this.props.dispatchAdder(expenseObj);
         this.props.history.push("/");
