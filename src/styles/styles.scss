@@ -7,3 +7,8 @@
 .fixDatePicker{
   box-sizing: border-box;
 }
+
+// Airbnb DateRangePicker patch.
+.DateRangePickerInput_arrow {
+  position: relative;
+}
