@@ -10,7 +10,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import "./styles/styles.scss";
 
 import configStore from "./store/configStore";
-import {getVisibleExpenses} from "./selectors/expenses";
+import { getVisibleExpenses } from "./selectors/expenses";
 import { Provider } from "react-redux";
 
 /* Redux store object. */

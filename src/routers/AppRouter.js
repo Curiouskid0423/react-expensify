@@ -3,7 +3,7 @@
  * @author Kevin Li
  */
 import React from "react";
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
 import ExpenseDashboard from "../components/Home";
 import AddExpense from "../components/AddExpense";

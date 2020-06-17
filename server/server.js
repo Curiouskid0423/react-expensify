@@ -2,6 +2,8 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const publicPath = path.join(__dirname, "..", "public");
+// Port is a dynamic environment variable defined by Heroku.
+const port = process.env.PORT || 3000;
 
 app.use(express.static(publicPath));
 
@@ -10,6 +12,6 @@ app.get("*", (req, res) => {
 });
 // Make yarn build is executed before this. Otherwise the necessary assets
 // would not be loaded.
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("The Express Server is up.");
 });
