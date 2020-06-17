@@ -8,7 +8,6 @@ import Header from "../components/Header";
 import ExpenseDashboard from "../components/Home";
 import AddExpense from "../components/AddExpense";
 import EditExpense from "../components/EditExpense";
-import HelpPage from "../components/HelpPage";
 import NotFound from "../components/404Page";
 
 // Browser routers takes only one component child (e.g. one div, or one Switch)
@@ -20,7 +19,6 @@ const Router = () => (
                 <Route path = "/" component = {ExpenseDashboard} exact = {true} />
                 <Route path = "/create" component = {AddExpense} />
                 <Route path = "/edit/:id" component={EditExpense} />
-                <Route path = "/help" component = {HelpPage} />
                 <Route component = {NotFound} />
             </Switch>
         </div>
