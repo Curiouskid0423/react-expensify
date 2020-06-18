@@ -8,6 +8,7 @@ import Router from "./routers/AppRouter";
 import "normalize.css/normalize.css";
 import 'react-dates/lib/css/_datepicker.css';
 import "./styles/styles.scss";
+import "./firebase/firebase";
 
 import configStore from "./store/configStore";
 import { getVisibleExpenses } from "./selectors/expenses";
