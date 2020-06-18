@@ -5,8 +5,8 @@ const Summary = ({ expenses }) => {
     return (
         <div>
             <h4>
-                Viewing {getExpenseTotal(expenses).num} item(s)
-                with a total of {getExpenseTotal(expenses).amount}
+                Viewing {expenses.length} item(s)
+                with a total of {getExpenseTotal(expenses)} dollar(s).
             </h4>
         </div>
     );

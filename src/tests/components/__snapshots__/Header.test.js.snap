@@ -18,11 +18,5 @@ exports[`Test with shallow rendering on Header. 1`] = `
   >
      AddExpense 
   </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    to="/help"
-  >
-     Help 
-  </NavLink>
 </header>
 `;

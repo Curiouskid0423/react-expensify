@@ -1,16 +1,13 @@
-import React from "react";
-
 /**
  * A selector function that takes in a list of expenses,
  * and return an object {total number of items, total amount}
  */
+
+const reducerFn = (curr, val) => curr + val;
+
 export const getExpenseTotal = (expenses) => {
-    let result = {
-        num: 0, amount: 0
-    }
-    for (let i = 0; i < expenses.length; i += 1) {
-        result.num += 1;
-        result.amount += expenses[i].amount;
-    }
-    return result;
-}
+    const startVal = 0;
+    return expenses
+        .map((item) => item.amount)
+        .reduce(reducerFn, startVal);
+};
