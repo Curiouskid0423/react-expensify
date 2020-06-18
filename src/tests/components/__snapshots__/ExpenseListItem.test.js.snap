@@ -10,11 +10,9 @@ exports[`ExpenseListItem Test Suite Should render an ExpenseListItem 1`] = `
     </h4>
   </Link>
   <h4>
-     
-    7000
-     -- 
-    172800000
-     
+    $7,000.00
+     -- 
+    Jan 3rd 1970
   </h4>
 </div>
 `;
