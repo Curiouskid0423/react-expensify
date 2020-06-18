@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ExpenseItem from "./ExpenseListItem";
 import { getVisibleExpenses } from "../selectors/expenses";
+import Summary from "./Summary";
 
 /**
  * Helper method to load each expense.
@@ -11,17 +12,18 @@ import { getVisibleExpenses } from "../selectors/expenses";
 const ExpensesLoader = (props) => {
     if (props.expenses.length === 0) {
         return (<h4>No expense is tracked under the given condition.</h4>);
-    }
+    };
     return props.expenses.map((item) => <ExpenseItem key = {item.id} {...item} />);
-}
+};
 
 export const ExpenseList = (props) => {
     return (
         <div>
+            <Summary expenses = {props.expenses} />
             <ExpensesLoader expenses = {props.expenses} />
         </div>
-    )
-}
+    );
+};
 
 /**
  * MapStateToProps take in two arguments: state, and ownProps
