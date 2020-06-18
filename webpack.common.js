@@ -4,7 +4,7 @@
  */
 const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const _publicDir = path.join(__dirname, "public");
+const _publicDir = path.join(__dirname, "public", "dist");
 
 module.exports = {
     entry: "./src/app.js",
