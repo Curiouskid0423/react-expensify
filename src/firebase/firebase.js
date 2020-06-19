@@ -1,8 +1,8 @@
 import * as firebase from "firebase";
 
 //TODO: The official setup as developer to include a
-//  javascript script tag in index.html, but it's better
-//  to use npm installation, which is what we are doing now.
+//  Js script tag in index.html, but it's better to use
+//  npm installation, which is what we are doing now.
 
 const firebaseConfig = {
     apiKey: "AIzaSyBckRnT3JzVXhP6U_x9Jc0vXQ4fCPvNl6Y",
@@ -18,6 +18,40 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-firebase.database().ref().set({
-    name: "Kevin Li"
-})
+const db = firebase.database();
+
+// set() returns a promise available for chaining.
+db.ref().set({
+    name: "Kevin Li",
+    school: "UC Berkeley",
+    major: "Computer Science",
+    isSingle: false,
+    location: {
+        country: "Taiwan",
+        city: "Taichung"
+    }
+}).then((data) => {
+    console.log("Your data is saved.");
+}).catch((error) => {
+    console.log("Failed and error message: ", error);
+});
+
+db.ref().update({
+    school: "Stanfurd",
+    major: "EECS and Bioengineering",
+    isSingle: null,
+    job: "Software Engineer",
+    "location/city": "Berkeley in the US"
+}).then(() => {
+    console.log("Update request succeeded.");
+}).catch((e) => {
+    console.log("Error message during the update: ", e);
+});
+
+// db.ref("isSingle").remove()
+//     .then(() => {
+//         console.log("Successfully removed isSingle.");
+//     })
+//     .catch(() => {
+//         console.log("Failed to remove isSingle attribute.");
+//     });
