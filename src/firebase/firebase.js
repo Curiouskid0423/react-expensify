@@ -28,7 +28,7 @@ const onValChange = db.ref().on("value",
     });
 
 db.ref("job").set("US President");
-db.ref().off(onValChange);
+db.ref().off("value", onValChange);
 db.ref("major").set("EECS and Bioengineering");
 
 
