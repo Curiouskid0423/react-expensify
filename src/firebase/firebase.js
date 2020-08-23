@@ -20,58 +20,23 @@ firebase.analytics();
 
 const db = firebase.database();
 
-const onValChange = db.ref().on("value",
-    (snapshot) => {
-    console.log(snapshot.val());
-    }, (e) => {
-        console.log("Your subscription to data has failed: ", e);
-    });
+// Firebase does not work with arrays. Instead, use push() method.
 
-db.ref("job").set("US President");
-db.ref().off("value", onValChange);
-db.ref("major").set("EECS and Bioengineering");
-
-
-/*
-//  set() returns a promise available for chaining.
-db.ref().set({
-    name: "Kevin Li",
-    school: "UC Berkeley",
-    major: "Computer Science",
-    isSingle: false,
-    location: { country: "Taiwan", city: "Taichung" }
-}).then((data) => {
-    console.log("Your data is saved.");
-}).catch((error) => {
-    console.log("Failed and error message: ", error);
+db.ref("expenses").push({
+    amount: 999,
+    createdAt: "September 14th",
+    description: "Some description in September.",
+    note: ""
 });
 
-db.ref().update({
-    school: "Stanfurd",
-    major: "EECS and Bioengineering",
-    isSingle: null,
-    job: "Software Engineer",
-    "location/city": "Berkeley in the US"
-}).then(() => {
-    console.log("Update request succeeded.");
-}).catch((e) => {
-    console.log("Error message during the update: ", e);
-});
-
-// on() returns the specified callback function.
-const onValChange = db.ref("job")
-    .on("value", (snapshot) => {
-    console.log("Job has been updated to ", snapshot.val());
-    }, (e) => {
-        console.log("Logging from the error fetching callback.");
+db.ref("expenses").on("value")
+    .then((snapshot) => {
+        const lst = [];
+        snapshot.forEach((child) => {
+            lst.push({
+                id: child.key,
+                ...child.val()
+            });
+        });
+        console.log(lst);
     });
-
-setTimeout(() => {
-    db.ref("job").set("System Architect");
-}, 2000);
-
-setTimeout(() => {
-    db.ref("job").off("value", onValChange);
-    db.ref("location/city").set("New Taipei City");
-}, 2000);
-*/
