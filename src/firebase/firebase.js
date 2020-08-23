@@ -20,16 +20,26 @@ firebase.analytics();
 
 const db = firebase.database();
 
-// set() returns a promise available for chaining.
+const onValChange = db.ref().on("value",
+    (snapshot) => {
+    console.log(snapshot.val());
+    }, (e) => {
+        console.log("Your subscription to data has failed: ", e);
+    });
+
+db.ref("job").set("US President");
+db.ref().off(onValChange);
+db.ref("major").set("EECS and Bioengineering");
+
+
+/*
+//  set() returns a promise available for chaining.
 db.ref().set({
     name: "Kevin Li",
     school: "UC Berkeley",
     major: "Computer Science",
     isSingle: false,
-    location: {
-        country: "Taiwan",
-        city: "Taichung"
-    }
+    location: { country: "Taiwan", city: "Taichung" }
 }).then((data) => {
     console.log("Your data is saved.");
 }).catch((error) => {
@@ -48,10 +58,20 @@ db.ref().update({
     console.log("Error message during the update: ", e);
 });
 
-// db.ref("isSingle").remove()
-//     .then(() => {
-//         console.log("Successfully removed isSingle.");
-//     })
-//     .catch(() => {
-//         console.log("Failed to remove isSingle attribute.");
-//     });
+// on() returns the specified callback function.
+const onValChange = db.ref("job")
+    .on("value", (snapshot) => {
+    console.log("Job has been updated to ", snapshot.val());
+    }, (e) => {
+        console.log("Logging from the error fetching callback.");
+    });
+
+setTimeout(() => {
+    db.ref("job").set("System Architect");
+}, 2000);
+
+setTimeout(() => {
+    db.ref("job").off("value", onValChange);
+    db.ref("location/city").set("New Taipei City");
+}, 2000);
+*/

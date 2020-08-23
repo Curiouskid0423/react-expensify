@@ -9,8 +9,8 @@ import "normalize.css/normalize.css";
 import 'react-dates/lib/css/_datepicker.css';
 import "./styles/styles.scss";
 import "./firebase/firebase";
-// This import is just for practicing.
-import "./_playground/es6-promise";
+/* This import is just for practicing.*/
+// import "./_playground/es6-promise";
 
 import configStore from "./store/configStore";
 import { getVisibleExpenses } from "./selectors/expenses";

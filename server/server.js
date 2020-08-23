@@ -10,7 +10,7 @@ app.use(express.static(publicPath));
 app.get("*", (req, res) => {
     res.sendFile(path.join(publicPath, "index.html"));
 });
-// Make yarn build is executed before this. Otherwise the necessary assets
+// Make yarn build executed before this. Otherwise the necessary assets
 // would not be loaded.
 app.listen(port, () => {
     console.log("The Express Server is up.");
