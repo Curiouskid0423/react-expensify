@@ -55,4 +55,12 @@ describe("Expense Reducer testing suite.", () => {
         );
         expect(editState[1].note).toEqual("Changed to this note.");
     });
+// Test 6 for setExpenses with data.
+    test("Test that setExpenses does set expenses.", () => {
+        const afterSet = expenseReducer(defaultExp, {
+            type: "SET_EXPENSES",
+            expenses: [defaultExp[1]]
+        });
+        expect(afterSet).toEqual([defaultExp[1]]);
+    })
 });

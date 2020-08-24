@@ -8,7 +8,7 @@ exports[`EditExpense page behaviors. should successfully render a default snapsh
         "amount": 7000,
         "createdAt": 172800000,
         "description": "Louisa Coffee",
-        "id": 2,
+        "id": "2",
         "note": "Cafe for working",
       }
     }

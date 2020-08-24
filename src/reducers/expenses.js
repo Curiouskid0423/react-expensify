@@ -31,6 +31,8 @@ const expenseReducer = (prevState = [], action) => {
                 }
                 return item;
             });
+        case "SET_EXPENSES":
+            return action.expenses;
         default:
             return prevState;
     }

@@ -9,26 +9,24 @@ import "normalize.css/normalize.css";
 import 'react-dates/lib/css/_datepicker.css';
 import "./styles/styles.scss";
 import "./firebase/firebase";
-/* This import is just for practicing.*/
-// import "./_playground/es6-promise";
 
 import configStore from "./store/configStore";
-import { getVisibleExpenses } from "./selectors/expenses";
+import { startSetExpenses } from "./actions/expenses";
 import { Provider } from "react-redux";
 
 /* Redux store object. */
 const store = configStore();
-const unsubscribe = store.subscribe(() => {
-    const state = store.getState();
-    const visible = getVisibleExpenses(state.expenses, state.filters);
-    console.log(visible);
-});
-
 const storage = (
     <Provider store = {store}>
         <Router />
     </Provider>
 );
 
-ReactDOM.render(storage, document.getElementById("app"));
+
+
+ReactDOM.render(<p>Loading database...</p>, document.getElementById("app"));
+
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(storage, document.getElementById("app"));
+});
 
