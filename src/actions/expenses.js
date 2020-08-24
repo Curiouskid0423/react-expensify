@@ -39,19 +39,25 @@ export const startAddExpense = (
     }
 }
 
-
-
 /**
  * Action for removing expense.
  * @param id
  * @returns {{id: *, type: string}}
  */
-export const removeExpense = ({ id }) => {
-    return {
-        type: "REMOVE_EXPENSE",
-        id
+export const removeExpense = (id) => ({
+        type: "REMOVE_EXPENSE", id
+});
+
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+        return database.ref(`expense/${id}`).set(null).then(() => {
+            dispatch(removeExpense(id));
+        }, (error) => {
+            console.log("Failed at removing an expense:", error);
+        });
     }
-};
+}
+
 
 /**
  * Action for editing expense based on provided info.

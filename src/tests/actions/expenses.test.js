@@ -4,7 +4,7 @@ import {
     editExpense,
     startAddExpense,
     setExpenses,
-    startSetExpenses
+    startSetExpenses, startRemoveExpense
 } from "../../actions/expenses";
 import {expenses as defaultExp} from "../fixtures/expenses";
 import database from "../../firebase/firebase";
@@ -25,11 +25,27 @@ describe("Expense action behaviors", () => {
     });
 
     test("Test removeExpense.", () => {
-        const removeExpObj = removeExpense({ id: "kevinhanyulin" });
+        const removeExpObj = removeExpense("kevinhanyulin");
         expect(removeExpObj).toEqual({
             type: "REMOVE_EXPENSE",
             id: "kevinhanyulin"
         });
+    });
+
+    test("Test startRemoveExpense with firebase data.", (done) => {
+        const store = createStore({});
+        const id = defaultExp[1].id;
+        store.dispatch(startRemoveExpense({ id }))
+            .then(() => {
+                const actions = store.getActions();
+                expect(actions[0]).toEqual({
+                    type: "REMOVE_EXPENSE", id
+                });
+                return database.ref(`expense/${id}`).once("value");
+            }).then((target) => {
+                expect(target.val()).toBeFalsy();
+                done();
+            });
     });
 
     test("Test editExpense.", () => {
