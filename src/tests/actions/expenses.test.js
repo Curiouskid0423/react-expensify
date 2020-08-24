@@ -56,17 +56,29 @@ describe("Expense action behaviors", () => {
                     ...expenseData
                 }
             });
-        });
-
-    //    Test whether firebase correctly stores the piece of data.
-        database.ref("expense").once("value").then((snapshot) => {
-            expect(snapshot.val()).toEqual(expenseData);
-            done();
+            //    Test whether firebase correctly stores the piece of data.
+            database.ref(`expense/${actions[0].expense.id}`).once("value").then((snapshot) => {
+                expect(snapshot.val()).toEqual(expenseData);
+                done();
+            });
         });
     });
 
-    test("Test add expense to database and redux store.", () => {
+    test("Test add expense to database and redux store.", (done) => {
+        const initState = {};
+        const store = createStore(initState);
 
+        store.dispatch(startAddExpense()).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual({
+                type: "ADD_EXPENSE",
+                expense: {
+                    id: expect.any(String),
+                    description: "", amount: 0, createdAt: 0, note: ""
+                }
+            });
+            done();
+        })
     });
 
     // test("Test addExpense with default props.", () => {
