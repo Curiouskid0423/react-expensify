@@ -6,17 +6,16 @@ import "firebase/analytics";
 //  npm installation, which is what we are doing now.
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBckRnT3JzVXhP6U_x9Jc0vXQ4fCPvNl6Y",
-    authDomain: "react-expensify-fd242.firebaseapp.com",
-    databaseURL: "https://react-expensify-fd242.firebaseio.com",
-    projectId: "react-expensify-fd242",
-    storageBucket: "react-expensify-fd242.appspot.com",
-    messagingSenderId: "1000911575691",
-    appId: "1:1000911575691:web:62bef8aaaa16e8dd56528e",
-    measurementId: "G-T1H299RF4N"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
 const db = firebase.database();
 

@@ -57,7 +57,9 @@ describe("Expense action behaviors", () => {
                 }
             });
             //    Test whether firebase correctly stores the piece of data.
-            database.ref(`expense/${actions[0].expense.id}`).once("value").then((snapshot) => {
+            database.ref(`expense/${actions[0].expense.id}`)
+                .once("value")
+                .then((snapshot) => {
                 expect(snapshot.val()).toEqual(expenseData);
                 done();
             });
