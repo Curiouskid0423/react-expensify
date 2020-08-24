@@ -3,9 +3,7 @@
  * @author Kevin Li
  */
 
-import {v4 as uuid} from "uuid";
 import database from "../firebase/firebase";
-import {expenses} from "../tests/fixtures/expenses";
 
 
 /**
@@ -65,11 +63,19 @@ export const startRemoveExpense = ({ id } = {}) => {
  * @param editObj
  * @returns {{edit: *, id: *, type: string}}
  */
-export const editExpense = (id, editObj) => {
-    return {
+export const editExpense = (id, editObj) => ({
         type: "EDIT_EXPENSE",
         id,
         edit: editObj
+});
+
+export const startEditExpense = (id, editObj = {}) => {
+    return (dispatch) => {
+         return database.ref(`expense/${id}`)
+             .update(editObj)
+             .then(() => {
+             dispatch(editExpense(id, editObj));
+         });
     }
 }
 

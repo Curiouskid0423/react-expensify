@@ -4,7 +4,7 @@ import {
     editExpense,
     startAddExpense,
     setExpenses,
-    startSetExpenses, startRemoveExpense
+    startSetExpenses, startRemoveExpense, startEditExpense
 } from "../../actions/expenses";
 import {expenses as defaultExp} from "../fixtures/expenses";
 import database from "../../firebase/firebase";
@@ -57,6 +57,25 @@ describe("Expense action behaviors", () => {
             edit: { note: "Edited notes." }
         });
     });
+
+    test("Test startEditExpense", (done) => {
+        const store = createStore({});
+        const edit = { note: "Edited notes." };
+        store.dispatch(
+            startEditExpense(defaultExp[1].id, edit)
+        ).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual({
+                type: "EDIT_EXPENSE",
+                id: defaultExp[1].id,
+                edit
+            });
+            return database.ref(`expense/${defaultExp[1].id}`).once("value");
+        }).then((snapshot) => {
+            expect(snapshot.val().note).toEqual("Edited notes.");
+            done();
+        })
+    })
 
     test("Test addExpense with given value.", () => {
         const addExpenseObj = addExpense(defaultExp[2]);
