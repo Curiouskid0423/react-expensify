@@ -1,4 +1,5 @@
 import * as firebase from "firebase";
+import "firebase/analytics";
 
 //TODO: The official setup as developer to include a
 //  Js script tag in index.html, but it's better to use
@@ -16,27 +17,26 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 
 const db = firebase.database();
 
-// Firebase does not work with arrays. Instead, use push() method.
+export {firebase, db as default };
 
-db.ref("expenses").push({
-    amount: 999,
-    createdAt: "September 14th",
-    description: "Some description in September.",
-    note: ""
-});
-
-db.ref("expenses").on("value")
-    .then((snapshot) => {
-        const lst = [];
-        snapshot.forEach((child) => {
-            lst.push({
-                id: child.key,
-                ...child.val()
-            });
-        });
-        console.log(lst);
-    });
+// db.ref("expenses").push({
+//     amount: 999,
+//     createdAt: "September 14th",
+//     description: "Some description in September.",
+//     note: ""
+// });
+//
+// db.ref("expenses").on("value")
+//     .then((snapshot) => {
+//         const lst = [];
+//         snapshot.forEach((child) => {
+//             lst.push({
+//                 id: child.key,
+//                 ...child.val()
+//             });
+//         });
+//         console.log(lst);
+//     });

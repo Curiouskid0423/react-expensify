@@ -4,28 +4,41 @@
  */
 
 import {v4 as uuid} from "uuid";
+import database from "../firebase/firebase";
+
 
 /**
- * Action generator for add expenses.
- * @param description
- * @param note is optional
- * @param amount
- * @param createdAt stored in numeric value (in respect to unix epoch time)
- * @returns {{type: string, expense: {note, createdAt, amount: *, description: *, id: string}}}
+ * @desc A synchronous action generator that returns an object, based
+ * on the params passed in by startAddExpense.
+ * @param expense
+ * @return {{type: string, expense: *}}
  */
-export const addExpense = (
-        { description = "", note = "", amount = 0, createdAt = 0} = {}) => {
-    return {
-        type: "ADD_EXPENSE",
-        expense: {
-            id: uuid(),
-            description,
-            note,
-            amount,
-            createdAt
-        }
+export const addExpense = (expense) => ({
+    type: "ADD_EXPENSE",
+    expense
+});
+
+/**
+ * @desc startAddExpense bootstraps the addExpense action dispatch.
+ * @param description,  amount, createdAt, note
+ * @return an async dispatch function call.
+ */
+export const startAddExpense = (
+    { description = "", amount = 0, createdAt = 0, note = "" } = {}) => {
+    return (dispatch) => {
+        const expense = { description, amount, createdAt, note };
+        // Returning this database call gives a Promise that may be tested on,
+        // but the code can work completely fine even if the call isn't returned.
+        return database.ref("expense").push(expense).then((ref) => {
+            dispatch(addExpense({
+                id: ref.key,
+                ...expense
+            }));
+        });
     }
-};
+}
+
+
 
 /**
  * Action for removing expense.

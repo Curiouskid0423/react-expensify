@@ -1,7 +1,7 @@
 import React from "react";
 import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
-import {addExpense} from "../actions/expenses";
+import {startAddExpense} from "../actions/expenses";
 
 export class AddExpense extends React.Component {
     constructor(props) {
@@ -27,7 +27,7 @@ export class AddExpense extends React.Component {
 // Use mapDispatchToProps to simplify functions for better testing experience.
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchAdder: (expenseObj) => dispatch(addExpense(expenseObj))
+        dispatchAdder: (expenseObj) => dispatch(startAddExpense(expenseObj))
     };
 };
 
