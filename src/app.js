@@ -4,15 +4,16 @@
  */
 import React from "react";
 import ReactDOM from "react-dom";
-import Router from "./routers/AppRouter";
+import { Provider } from "react-redux";
 import "normalize.css/normalize.css";
 import 'react-dates/lib/css/_datepicker.css';
+import Router, {history} from "./routers/AppRouter";
 import "./styles/styles.scss";
-import "./firebase/firebase";
+import { firebase } from "./firebase/firebase";
 
 import configStore from "./store/configStore";
 import { startSetExpenses } from "./actions/expenses";
-import { Provider } from "react-redux";
+import {login, logout} from "./actions/auth";
 
 /* Redux store object. */
 const store = configStore();
@@ -26,7 +27,26 @@ const storage = (
 
 ReactDOM.render(<p>Loading database...</p>, document.getElementById("app"));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(storage, document.getElementById("app"));
-});
+let hasRendered = false;
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(storage, document.getElementById("app"));
+        hasRendered = true;
+    }
+}
 
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        store.dispatch(login(user.uid));
+        store.dispatch(startSetExpenses()).then(() => {
+            renderApp();
+            if (history.location.pathname === "/") {
+                history.push("/dashboard");
+            }
+        });
+    } else {
+        store.dispatch(logout());
+        renderApp();
+        history.push("/");
+    }
+})

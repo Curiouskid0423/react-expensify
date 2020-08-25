@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the behaviors of LogIn page. should successfully render a snapshot. 1`] = `
+<div>
+  <button
+    onClick={[MockFunction]}
+  >
+    Login
+  </button>
+  <h2>
+    Hello this is a Log In page.
+  </h2>
+</div>
+`;

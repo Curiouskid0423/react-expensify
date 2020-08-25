@@ -1,9 +1,8 @@
 import * as firebase from "firebase";
 import "firebase/analytics";
 
-//TODO: The official setup as developer to include a
-//  Js script tag in index.html, but it's better to use
-//  npm installation, which is what we are doing now.
+//TODO: The official setup as developer to include a Js script tag in index.html,
+// but it's better to use npm installation, which is what we are doing now.
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -18,24 +17,6 @@ firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 
 const db = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export {firebase, db as default };
-
-// db.ref("expenses").push({
-//     amount: 999,
-//     createdAt: "September 14th",
-//     description: "Some description in September.",
-//     note: ""
-// });
-//
-// db.ref("expenses").on("value")
-//     .then((snapshot) => {
-//         const lst = [];
-//         snapshot.forEach((child) => {
-//             lst.push({
-//                 id: child.key,
-//                 ...child.val()
-//             });
-//         });
-//         console.log(lst);
-//     });
+export {firebase, googleAuthProvider, db as default };

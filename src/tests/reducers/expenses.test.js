@@ -1,7 +1,5 @@
 import expenseReducer from "../../reducers/expenses";
 import { expenses as defaultExp } from "../fixtures/expenses";
-import {expect} from "@jest/globals";
-import {v4 as uuid} from "uuid";
 
 describe("Expense Reducer testing suite.", () => {
 

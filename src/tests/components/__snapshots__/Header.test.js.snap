@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test with shallow rendering on Header. 1`] = `
+exports[`the behavior of Header Component should shallow render a Header. 1`] = `
 <header>
   <h1>
     Expensify
@@ -8,7 +8,7 @@ exports[`Test with shallow rendering on Header. 1`] = `
   <NavLink
     activeClassName="is-active"
     exact={true}
-    to="/"
+    to="/dashboard"
   >
      Home 
   </NavLink>
@@ -18,5 +18,10 @@ exports[`Test with shallow rendering on Header. 1`] = `
   >
      AddExpense 
   </NavLink>
+  <button
+    onClick={[MockFunction]}
+  >
+     LogOut 
+  </button>
 </header>
 `;
