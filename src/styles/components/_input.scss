@@ -1,0 +1,15 @@
+.select {
+  border: 1px solid #cacccd;
+  border-radius: 5px;
+  height: 56px;
+  font-weight: 300;
+  padding: $s-size;
+}
+
+.text-input {
+  @extend .select;
+}
+
+.remove-btn {
+  padding: 0 $l-size;
+}

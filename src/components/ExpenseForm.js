@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import 'react-dates/initialize';
 import { SingleDatePicker } from "react-dates";
+import Button from "@material-ui/core/Button";
 
 /**
  * ExpenseForm will be reused in Edit Expense and Add Expense.
@@ -67,17 +68,15 @@ export default class ExpenseForm extends React.Component {
 
     render() {
         return (
-            <div>
-                { this.state.error && <h4>{ this.state.error }</h4> }
-                <form onSubmit = {this.onAddExpense}>
-                    <input type = "text" placeholder = "Description"
+                <form className={"form"} onSubmit = {this.onAddExpense}>
+                    { this.state.error && <h4 className={"form__error"}>{ this.state.error }</h4> }
+                    <input className={"text-input"} type = "text" placeholder = "Description"
                            value = {this.state.description} autoFocus = {true}
                            onChange={this.onDescChange}
                     />
-                    <input type = "number" step =".01" placeholder = "Amount" value={this.state.amount}
+                    <input className={"text-input"} type = "number" step =".01" placeholder = "Amount" value={this.state.amount}
                            onChange={this.onAmountChange}/>
-                    <br />
-                    <textarea placeholder = "Optional notes for the expense"
+                    <textarea className={"text-input"} placeholder = "Optional notes for the expense"
                               value = {this.state.note}
                               onChange={this.onNoteChange}>
                     </textarea>
@@ -88,9 +87,13 @@ export default class ExpenseForm extends React.Component {
                                       numberOfMonths = {1} isOutsideRange = {() => false}
                     />
                     <br/>
-                    <button type="submit"> Submit </button>
+                    {/*<button type="submit"> Submit </button>*/}
+                    <div>
+                        <Button variant="contained" color = {"primary"} type ={"submit"}>
+                            Submit
+                        </Button>
+                    </div>
                 </form>
-            </div>
         )
     }
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setEndDate, setStartDate, setTextFilter, sortByAmount, sortByDate} from "../actions/filters";
 import { DateRangePicker } from "react-dates";
+import TextField from "@material-ui/core/TextField";
+import {setEndDate, setStartDate, setTextFilter, sortByAmount, sortByDate} from "../actions/filters";
 
 // Export the unconnected version of ExpenseListFilters for testing.
 export class ExpenseListFilters extends React.Component {
@@ -51,16 +52,18 @@ export class ExpenseListFilters extends React.Component {
     render() {
         return (
             <div className={"content-container input-group"}>
-                <div className = {"input-group-item"}>
-                    <input type = "text" onChange={this.onTextChange}/>
+                <div className = {"input-group__item"}>
+                    {/*<input type = "text" onChange={this.onTextChange}/>*/}
+                    <TextField id="outlined-basic" label="Search" variant="outlined"
+                               onChange={this.onTextChange} />
                 </div>
-                <div className = {"input-group-item"}>
-                    <select onChange = {this.updateSortBy}>
+                <div className = {"input-group__item"}>
+                    <select onChange = {this.updateSortBy} className={"select"}>
                         <option value = "date"> Date </option>
                         <option value = "amount"> Amount </option>
                     </select>
                 </div>
-                <div className = {"input-group-item"}>
+                <div className = {"input-group__item"}>
                     <DateRangePicker
                         startDate = { this.props.filters.startDate }
                         startDateId = {this.getDateId(this.props.filters.startDate)}

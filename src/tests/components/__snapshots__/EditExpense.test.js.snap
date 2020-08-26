@@ -2,6 +2,19 @@
 
 exports[`EditExpense page behaviors. should successfully render a default snapshot. 1`] = `
 <div>
+  <div
+    className="page-header"
+  >
+    <div
+      className="content-container"
+    >
+      <h1
+        className="page-header__title"
+      >
+        Edit Expense
+      </h1>
+    </div>
+  </div>
   <ExpenseForm
     expense={
       Object {
@@ -14,10 +27,17 @@ exports[`EditExpense page behaviors. should successfully render a default snapsh
     }
     onSubmit={[Function]}
   />
-  <button
-    onClick={[Function]}
+  <div
+    className="remove-btn"
   >
-     Remove 
-  </button>
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+      type="submit"
+      variant="contained"
+    >
+      Remove Expense
+    </WithStyles(ForwardRef(Button))>
+  </div>
+  <br />
 </div>
 `;

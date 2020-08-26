@@ -32,7 +32,7 @@ describe("ExpenseListFilter behaviors", () => {
 
     it("should handle text change.", () => {
         const value = "lo"
-        wrapper.find("input").simulate("change", {
+        wrapper.find("WithStyles(ForwardRef(TextField))").simulate("change", {
             target: { value }
         });
         expect(setTextFilter).toHaveBeenLastCalledWith(value);

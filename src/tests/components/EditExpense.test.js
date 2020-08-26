@@ -28,7 +28,7 @@ describe("EditExpense page behaviors.", () => {
     });
 
     it("should handle removeExpense action.", () => {
-       wrapper.find("button").simulate("click");
+       wrapper.find("WithStyles(ForwardRef(Button))").simulate("click");
        expect(spyRemove).toHaveBeenLastCalledWith({id: selectedExp.id });
        expect(history.push).toHaveBeenLastCalledWith("/");
     });

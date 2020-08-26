@@ -5,6 +5,13 @@
 *   into a CSS file. It's mandatory.
 */
 
+// Interesting point from Udemy. The default box-sizing for browsers
+// is content-box, but it's almost never the ideal UI behavior.
+// Google for more details.
+* {
+  box-sizing: border-box;
+}
+
 html {
   // Change default font-size to 10.
   //font-size: 62.5%;

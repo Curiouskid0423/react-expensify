@@ -2,6 +2,7 @@ import React from "react";
 import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
 import {startEditExpense, startRemoveExpense} from "../actions/expenses";
+import Button from "@material-ui/core/Button";
 
 export class EditExpense extends React.Component {
     constructor(props) {
@@ -22,8 +23,19 @@ export class EditExpense extends React.Component {
     render() {
         return (
             <div>
-                <ExpenseForm expense = {this.props.expense} onSubmit = {this.onEdit} />
-                <button onClick = {this.onRemoval}> Remove </button>
+                <div className={"page-header"}>
+                    <div className={"content-container"}>
+                        <h1 className={"page-header__title"}>Edit Expense</h1>
+                    </div>
+                </div>
+                    <ExpenseForm expense = {this.props.expense} onSubmit = {this.onEdit} />
+                    {/*<button onClick = {this.onRemoval}> Remove </button>*/}
+                    <div className={"remove-btn"}>
+                        <Button variant="contained" type ={"submit"} onClick={this.onRemoval}>
+                            Remove Expense
+                        </Button>
+                    </div>
+                <br />
             </div>
         )
     }
