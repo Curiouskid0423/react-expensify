@@ -1,0 +1,23 @@
+.list-header{
+  background: #f7f7f7;
+  border: 1px solid darken(#f7f7f7, 7%);
+  color: #666;
+  padding: 0 $m-size;
+  //display: flex;
+  //justify-content: space-between;
+}
+
+.list-item {
+  border: 1px solid darken(#f7f7f7, 7%);
+  color: $dark-grey;
+  display: flex;
+  padding: $s-size $m-size;
+  text-decoration: none;
+  justify-content: space-between;
+}.list-item:hover {
+  background-color: darken(#fff, 3%);
+ }
+
+ .list-container {
+   padding-bottom: 5rem;
+ }

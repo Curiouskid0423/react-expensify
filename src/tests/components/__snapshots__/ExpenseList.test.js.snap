@@ -1,37 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExpenseList testing suite Should render ExpenseList with expense default. 1`] = `
-<ExpensesLoader
-  expenses={
-    Array [
-      Object {
-        "amount": 698300,
-        "createdAt": 0,
-        "description": "Philosophy cafe",
-        "id": "1",
-        "note": "",
-      },
-      Object {
-        "amount": 7000,
-        "createdAt": 172800000,
-        "description": "Louisa Coffee",
-        "id": "2",
-        "note": "Cafe for working",
-      },
-      Object {
-        "amount": 567388,
-        "createdAt": 345600000,
-        "description": "Cheese cake",
-        "id": "3",
-        "note": "Buy birthday gift",
-      },
-    ]
-  }
-/>
+<div
+  className="list-container"
+>
+  <div
+    className="content-container"
+  >
+    <div
+      className="list-header"
+    >
+      <p>
+        Expense
+      </p>
+    </div>
+    <ExpensesLoader
+      expenses={
+        Array [
+          Object {
+            "amount": 698300,
+            "createdAt": 0,
+            "description": "Philosophy cafe",
+            "id": "1",
+            "note": "",
+          },
+          Object {
+            "amount": 7000,
+            "createdAt": 172800000,
+            "description": "Louisa Coffee",
+            "id": "2",
+            "note": "Cafe for working",
+          },
+          Object {
+            "amount": 567388,
+            "createdAt": 345600000,
+            "description": "Cheese cake",
+            "id": "3",
+            "note": "Buy birthday gift",
+          },
+        ]
+      }
+    />
+  </div>
+</div>
 `;
 
 exports[`ExpenseList testing suite Test ExpenseList with empty expense array 1`] = `
-<ExpensesLoader
-  expenses={Array []}
-/>
+<div
+  className="list-container"
+>
+  <div
+    className="content-container"
+  >
+    <div
+      className="list-header"
+    >
+      <p>
+        Expense
+      </p>
+    </div>
+    <ExpensesLoader
+      expenses={Array []}
+    />
+  </div>
+</div>
 `;

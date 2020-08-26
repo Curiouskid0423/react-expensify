@@ -10,9 +10,9 @@ import 'react-dates/lib/css/_datepicker.css';
 import Router, {history} from "./routers/AppRouter";
 import "./styles/styles.scss";
 import { firebase } from "./firebase/firebase";
-
 import configStore from "./store/configStore";
 import { startSetExpenses } from "./actions/expenses";
+import LoadingPage from "./components/LoadingPage";
 import {login, logout} from "./actions/auth";
 
 /* Redux store object. */
@@ -25,7 +25,7 @@ const storage = (
 
 
 
-ReactDOM.render(<p>Loading database...</p>, document.getElementById("app"));
+ReactDOM.render(<LoadingPage />, document.getElementById("app"));
 
 let hasRendered = false;
 const renderApp = () => {

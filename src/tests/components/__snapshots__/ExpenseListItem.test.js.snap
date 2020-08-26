@@ -1,18 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExpenseListItem Test Suite Should render an ExpenseListItem 1`] = `
-<div>
-  <Link
-    to="/edit/2"
-  >
-    <h4>
+<Link
+  className="list-item"
+  to="/edit/2"
+>
+  <div>
+    <h3>
       Louisa Coffee
-    </h4>
-  </Link>
+    </h3>
+    <span>
+      $7,000.00
+    </span>
+  </div>
   <h4>
-    $7,000.00
-     -- 
-    Jan 3rd 1970
+    <span>
+      Jan 3rd 1970
+    </span>
   </h4>
-</div>
+</Link>
 `;

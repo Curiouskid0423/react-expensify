@@ -17,7 +17,14 @@ const ExpensesLoader = (props) => {
 
 export const ExpenseList = (props) => {
     return (
-            <ExpensesLoader expenses = {props.expenses} />
+            <div className={"list-container"}>
+                <div className={"content-container"}>
+                    <div className={"list-header"}>
+                        <p>Expense</p>
+                    </div>
+                    <ExpensesLoader expenses = {props.expenses} />
+                </div>
+            </div>
     );
 };
 
