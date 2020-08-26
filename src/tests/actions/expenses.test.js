@@ -15,13 +15,14 @@ const createStore = configureStore([thunk]);
 
 describe("Expense action behaviors", () => {
 
+    const fakeUID = "thisIsAFakeUID";
     beforeEach((done) => {
         const expenseData = {};
         // Setup dummy data.
         defaultExp.forEach(({ id, description, createdAt, amount, note }) => {
             expenseData[id] = { description, createdAt, amount, note };
         });
-        database.ref("expense").set(expenseData).then(() => done());
+        database.ref(`user/${fakeUID}/expense`).set(expenseData).then(() => done());
     });
 
     test("Test removeExpense.", () => {
@@ -33,15 +34,16 @@ describe("Expense action behaviors", () => {
     });
 
     test("Test startRemoveExpense with firebase data.", (done) => {
-        const store = createStore({});
+        const store = createStore({ auth: {uid: fakeUID} });
         const id = defaultExp[1].id;
         store.dispatch(startRemoveExpense({ id }))
             .then(() => {
                 const actions = store.getActions();
+                const uid = store.getState().auth.uid;
                 expect(actions[0]).toEqual({
                     type: "REMOVE_EXPENSE", id
                 });
-                return database.ref(`expense/${id}`).once("value");
+                return database.ref(`user/${uid}/expense/${id}`).once("value");
             }).then((target) => {
                 expect(target.val()).toBeFalsy();
                 done();
@@ -59,18 +61,19 @@ describe("Expense action behaviors", () => {
     });
 
     test("Test startEditExpense", (done) => {
-        const store = createStore({});
+        const store = createStore({ auth: {uid: fakeUID} });
         const edit = { note: "Edited notes." };
         store.dispatch(
             startEditExpense(defaultExp[1].id, edit)
         ).then(() => {
             const actions = store.getActions();
+            const uid = store.getState().auth.uid;
             expect(actions[0]).toEqual({
                 type: "EDIT_EXPENSE",
                 id: defaultExp[1].id,
                 edit
             });
-            return database.ref(`expense/${defaultExp[1].id}`).once("value");
+            return database.ref(`user/${uid}/expense/${defaultExp[1].id}`).once("value");
         }).then((snapshot) => {
             expect(snapshot.val().note).toEqual("Edited notes.");
             done();
@@ -88,8 +91,7 @@ describe("Expense action behaviors", () => {
     // Have to pass in DONE as parameter since this test suite involves async calls.
     // If "done" isn't passed in, this test suite is always going to pass.
     test("Test add expense to database and redux store with defaults.", (done) => {
-        const initState = {};
-        const store = createStore(initState);
+        const store = createStore({ auth: {uid: fakeUID} });
         const expenseData = {
             description: "My New Macbook Pro",
             amount: 6000,
@@ -100,6 +102,7 @@ describe("Expense action behaviors", () => {
         // Test whether the data is stored to the redux store.
         store.dispatch(startAddExpense(expenseData)).then(() => {
             const actions = store.getActions();
+            const uid = store.getState().auth.uid;
             expect(actions[0]).toEqual({
                 type: "ADD_EXPENSE",
                 expense: {
@@ -108,7 +111,7 @@ describe("Expense action behaviors", () => {
                 }
             });
             //    Test whether firebase correctly stores the piece of data.
-            database.ref(`expense/${actions[0].expense.id}`)
+            database.ref(`user/${uid}/expense/${actions[0].expense.id}`)
                 .once("value")
                 .then((snapshot) => {
                 expect(snapshot.val()).toEqual(expenseData);
@@ -118,8 +121,7 @@ describe("Expense action behaviors", () => {
     });
 
     test("Test add expense to database and redux store.", (done) => {
-        const initState = {};
-        const store = createStore(initState);
+        const store = createStore({ auth: {uid: fakeUID} });
 
         store.dispatch(startAddExpense()).then(() => {
             const actions = store.getActions();
@@ -143,7 +145,7 @@ describe("Expense action behaviors", () => {
     });
 
     test("Test for startSetExpense.", (done) => {
-        const store = createStore({});
+        const store = createStore({ auth: {uid: fakeUID} });
         store.dispatch(startSetExpenses()).then(() => {
             const actions = store.getActions();
             expect(actions[0]).toEqual({

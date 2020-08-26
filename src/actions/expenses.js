@@ -24,11 +24,12 @@ export const addExpense = (expense) => ({
  */
 export const startAddExpense = (
     { description = "", amount = 0, createdAt = 0, note = "" } = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const userId = getState().auth.uid;
         const expense = { description, amount, createdAt, note };
         // Returning this database call gives a Promise that may be tested on,
         // but the code can work completely fine even if the call isn't returned.
-        return database.ref("expense").push(expense).then((ref) => {
+        return database.ref(`user/${userId}/expense`).push(expense).then((ref) => {
             dispatch(addExpense({
                 id: ref.key,
                 ...expense
@@ -47,8 +48,9 @@ export const removeExpense = (id) => ({
 });
 
 export const startRemoveExpense = ({ id } = {}) => {
-    return (dispatch) => {
-        return database.ref(`expense/${id}`).set(null).then(() => {
+    return (dispatch, getState) => {
+        const userId = getState().auth.uid;
+        return database.ref(`user/${userId}/expense/${id}`).set(null).then(() => {
             dispatch(removeExpense(id));
         }, (error) => {
             console.log("Failed at removing an expense:", error);
@@ -70,8 +72,9 @@ export const editExpense = (id, editObj) => ({
 });
 
 export const startEditExpense = (id, editObj = {}) => {
-    return (dispatch) => {
-         return database.ref(`expense/${id}`)
+    return (dispatch, getState) => {
+        const userId = getState().auth.uid;
+         return database.ref(`user/${userId}/expense/${id}`)
              .update(editObj)
              .then(() => {
              dispatch(editExpense(id, editObj));
@@ -87,8 +90,9 @@ export const setExpenses = (expenses) => {
 }
 
 export const startSetExpenses = () => {
-    return (dispatch) => {
-        return database.ref("expense")
+    return (dispatch, getState) => {
+        const userId = getState().auth.uid;
+        return database.ref(`user/${userId}/expense`)
             .once("value")
             .then((snapshot) => {
                 const lst = [];

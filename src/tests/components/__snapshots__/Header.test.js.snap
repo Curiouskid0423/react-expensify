@@ -8,7 +8,7 @@ exports[`the behavior of Header Component should shallow render a Header. 1`] = 
   <NavLink
     activeClassName="is-active"
     exact={true}
-    to="/dashboard"
+    to="/"
   >
      Home 
   </NavLink>
