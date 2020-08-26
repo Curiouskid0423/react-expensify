@@ -1,5 +1,9 @@
 @import "./base/settings";
 @import "./base/base";
+@import "./components/box-layout";
+@import "./components/content-container";
+@import "./components/page-header";
+@import "./components/header";
 
 // All the base files have to be imported in order to
 // be considered by webpack.

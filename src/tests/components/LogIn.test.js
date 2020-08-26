@@ -15,7 +15,7 @@ describe("the behaviors of LogIn page.", () => {
     });
 
     it("should call startLogin onClick", () => {
-        wrapper.find("button").simulate("click");
+        wrapper.find("WithStyles(ForwardRef(Button))").simulate("click");
         expect(startLogin).toHaveBeenCalled();
     })
 

@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import ExpenseItem from "./ExpenseListItem";
 import { getVisibleExpenses } from "../selectors/expenses";
-import Summary from "./Summary";
 
 /**
  * Helper method to load each expense.
@@ -18,10 +17,7 @@ const ExpensesLoader = (props) => {
 
 export const ExpenseList = (props) => {
     return (
-        <div>
-            <Summary expenses = {props.expenses} />
             <ExpensesLoader expenses = {props.expenses} />
-        </div>
     );
 };
 

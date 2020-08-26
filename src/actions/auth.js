@@ -5,9 +5,10 @@ import { firebase, googleAuthProvider } from "../firebase/firebase";
  * versus Synchronous actions.
  */
 
-export const login = (uid) => ({
+export const login = (uid, nameInitial) => ({
     type: "LOGIN",
-    uid
+    uid,
+    nameInitial
 });
 
 export const startLogin = () => {

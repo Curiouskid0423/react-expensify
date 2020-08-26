@@ -37,7 +37,8 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        store.dispatch(login(user.uid));
+        const nameInitial = user.displayName[0].toUpperCase();
+        store.dispatch(login(user.uid, nameInitial));
         store.dispatch(startSetExpenses()).then(() => {
             renderApp();
             if (history.location.pathname === "/") {

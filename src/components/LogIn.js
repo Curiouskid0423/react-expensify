@@ -1,15 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 import { connect } from "react-redux";
 import { startLogin } from "../actions/auth";
 
 export const LogIn = (props) => {
     return (
-        <div>
-            <button onClick = {props.dispatchLogin}>
-                Login
-            </button>
-            <h2>Hello this is a Log In page.</h2>
+        <div className ={"box-layout"}>
+            <div className = {"box-layout__box"}>
+                <div className={"box-layout__textarea"}>
+                    <h1 className={"box-layout__title"}>React-Expensify</h1>
+                    <h3>Keep track of your budget on a React App</h3>
+                </div>
+                <Button variant="contained" color="primary" onClick = {props.dispatchLogin}>
+                    Login
+                </Button>
+            </div>
         </div>
     );
 }

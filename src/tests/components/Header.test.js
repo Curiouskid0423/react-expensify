@@ -18,7 +18,7 @@ describe("the behavior of Header Component", () => {
    });
 
    it("should call startlogout on click.", () => {
-      wrapper.find("button").simulate("click");
+      wrapper.find("WithStyles(ForwardRef(Button))").simulate("click");
       expect(spyLogout).toHaveBeenCalled();
    })
 

@@ -1,15 +1,23 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { connect } from "react-redux";
 import {startLogout} from "../actions/auth";
+import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
 
 export const Header = (props) => {
     return (
-        <header>
-            <h1>Expensify</h1>
-            <NavLink to = "/" activeClassName = "is-active" exact> Home </NavLink>
-            <NavLink to = "/create" activeClassName = "is-active"> AddExpense </NavLink>
-            <button onClick = {props.dispatchLogOut} > LogOut </button>
+        <header className={"header"}>
+            <Link to = "/dashboard" className={"header__title"}>
+                <h1> Expensify </h1>
+            </Link>
+            <div className={"header__right"}>
+                <Button variant="contained" color = {"primary"}
+                        className = {"header__button"} onClick = {props.dispatchLogOut}>
+                    Logout
+                </Button>
+                <Avatar className = {"header__avatar"}> {props.nameInitial} </Avatar>
+            </div>
         </header>
     )
 }
@@ -19,4 +27,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatchLogOut: () => dispatch(startLogout())
 })
 
-export default connect(undefined, mapDispatchToProps)(Header);
+const mapStateToProps = (state) => ({
+    nameInitial: state.auth.nameInitial
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

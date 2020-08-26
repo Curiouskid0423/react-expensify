@@ -7,7 +7,8 @@ const authReducer = (prevState = {}, action) => {
     switch(action.type) {
         case "LOGIN":
             return {
-                uid: action.uid
+                uid: action.uid,
+                nameInitial: action.nameInitial
             }
         case "LOGOUT":
             return {};
